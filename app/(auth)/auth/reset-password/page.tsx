@@ -1,15 +1,14 @@
-import { useEffect, useState } from "react"
-import Layout from "src/core/layouts/Layout"
+"use client"
+
 import { LabeledTextField } from "src/core/components/LabeledTextField"
 import { Form, FORM_ERROR } from "src/core/components/Form"
 import { ResetPassword } from "src/auth/validations"
 import resetPassword from "src/auth/mutations/resetPassword"
-import { BlitzPage, Routes } from "@blitzjs/next"
 import { useRouter } from "next/router"
 import { useMutation } from "@blitzjs/rpc"
 import Link from "next/link"
 
-const ResetPasswordPage: BlitzPage = () => {
+const ResetPasswordPage = () => {
   const router = useRouter()
   const token = router.query.token?.toString()
   const [resetPasswordMutation, { isSuccess }] = useMutation(resetPassword)
@@ -22,7 +21,7 @@ const ResetPasswordPage: BlitzPage = () => {
         <div>
           <h2>Password Reset Successfully</h2>
           <p>
-            Go to the <Link href={Routes.Home()}>homepage</Link>
+            Go to the <Link href={"/"}>homepage</Link>
           </p>
         </div>
       ) : (
@@ -63,6 +62,5 @@ const ResetPasswordPage: BlitzPage = () => {
 }
 
 ResetPasswordPage.redirectAuthenticatedTo = "/"
-ResetPasswordPage.getLayout = (page) => <Layout title="Reset Your Password">{page}</Layout>
 
 export default ResetPasswordPage

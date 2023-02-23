@@ -5,7 +5,6 @@ import { Form, FORM_ERROR } from "src/core/components/Form"
 import login from "src/auth/mutations/login"
 import { Login } from "src/auth/validations"
 import { useMutation } from "@blitzjs/rpc"
-import { Routes } from "@blitzjs/next"
 
 type LoginFormProps = {
   onSuccess?: (user: PromiseReturnType<typeof login>) => void
@@ -39,13 +38,11 @@ export const LoginForm = (props: LoginFormProps) => {
       >
         <LabeledTextField name="email" label="Email" placeholder="Email" />
         <LabeledTextField name="password" label="Password" placeholder="Password" type="password" />
-        <div>
-          <Link href={Routes.ForgotPasswordPage()}>Forgot your password?</Link>
-        </div>
+        <div></div>
       </Form>
 
       <div style={{ marginTop: "1rem" }}>
-        Or <Link href={Routes.SignupPage()}>Sign Up</Link>
+        Or <Link href={"/auth/signup"}>Sign Up</Link>
       </div>
     </div>
   )
